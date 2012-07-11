@@ -1,0 +1,59 @@
+<div>
+    <div id="not-started-game-template">
+        <div class="span3 alert">
+            <h2>{{ print(title()); }}</h2>
+            {{ print(title()); }}
+            <br />
+            {{= attributes.time }} @ {{= attributes.location }}
+            {{ if(canScore()) { }}
+            <button class="startScoring btn btn-primary">Score this game</button>
+            {{ } else if(attributes.scorer === collection.connectionId) { }}
+            <button class="gameOn btn btn-primary">Start Game</button>
+            {{ } }}
+        </div>
+    </div>
+    <div id="in-progress-game-template">
+        <div class="span3 alert alert-info">
+            <h2>{{ print(title()) }}</h2>
+            <table>
+                <tr>
+                    <th>{{ print(leader().team) }}</th>
+                    <th>{{ print(trailer().team) }}</th>
+                </tr>
+                <tr>
+                    <td>{{ print(leader().score) }}</td>
+                    <td>{{ print(trailer().score) }}</td>
+                </tr>
+            </table>
+            {{ if(collection.connectionId === attributes.scorer) { }}
+            <div class="row-fluid">                
+                <button class="home btn btn-success">Home Team Scored</button>
+                <button class="visitor btn btn-warning">Visiting Team Scored</button>
+            </div>
+            {{ } }}
+        </div>
+    </div>
+    <div id="done-game-template">
+        <div class="span3 alert alert-success">
+            <h2>{{ print(title()); }}</h2>
+            <div class="row-fluid hidden-phone">
+                <span class="label label-success">{{ print(leader().team) }}</span>
+                defeated
+            </div>
+            <div class="row-fluid hidden-phone">
+                <b>{{ print(trailer().team) }}</b>
+                <span class="label label-success">{{ print(leader().score) }} - 
+                {{ print(trailer().score) }}</span>
+            </div>
+            <div class="row-fluid visible-phone">
+                <span class="label label-success">{{ print(leader().team) }}</span>: 
+                <b>{{ print(leader().score) }}</b>
+            </div>
+            <div class="row-fluid visible-phone">
+                <b>{{ print(trailer().team) }}</b>: 
+                {{ print(trailer().score) }}
+            </div>
+            {{= attributes.time }} @ {{= attributes.location }}
+        </div>
+    </div>
+</div>

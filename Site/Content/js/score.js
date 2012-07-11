@@ -1,0 +1,1 @@
+require(['jquery', 'underscore', 'backbone', 'text!../html/scoreTemplate.html', 'domReady!'], function($, _, Backbone, templates) {
