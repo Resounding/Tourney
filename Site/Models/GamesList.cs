@@ -3,11 +3,16 @@ using Site.Models;
 
 public class GamesList : Dictionary<int, Game>
 {
-    private readonly static GamesList _instance = new GamesList();
+    private static GamesList _instance = new GamesList();
 
     public static GamesList Instance
     {
         get { return _instance; }
+    }
+
+    public static void Reset()
+    {
+        _instance = new GamesList();
     }
 
     private GamesList()

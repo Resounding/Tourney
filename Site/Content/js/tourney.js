@@ -119,7 +119,15 @@ require(['underscore', 'backbone', 'text!../html/gameTemplates.html', 'domReady!
                         return connection;
                     };
 
-                getConnection().start();                    
+                getConnection().start();  
+                
+                that.on('reset:tournament', function() {
+                    $.post('api/games/reset', {
+                        success: function() {
+                            that.fetch();
+                        }
+                    });
+                });                  
 
                 that.on('gameOn', function(id) {
                     var game = that.get(id);
@@ -219,10 +227,17 @@ require(['underscore', 'backbone', 'text!../html/gameTemplates.html', 'domReady!
                 var collection = this.collection = new GameCollection();
                 collection.on('add', this.addOne, this);
                 collection.fetch();
-                $('.btn').click(function(e) {
+
+                $('.btn-success').click(function (e) {
                     var connectionId = 'chodgkinson@gmail.com';
                     docCookies.setItem('connectionId', connectionId);
                     collection.invoke('set', { connectionId: connectionId });
+                });
+
+                $('.btn-danger').click(function(e) {
+                    if(!confirm('Are you sure you want to reset the Tournament?')) return;
+
+                    collection.trigger('reset:tournament');
                 });
             },
             addOne: function(game) {
