@@ -152,6 +152,8 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\html\gameTemplates.html" />
     <Content Include="Content\html\scoreTemplate.html" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\js\signalR.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\js\backbone.js" />

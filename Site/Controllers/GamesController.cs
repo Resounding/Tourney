@@ -24,6 +24,7 @@ namespace Site.Controllers
         // POST /api/games
         public void Post(string value)
         {
+            GamesList.Reset();
         }
 
         // PUT /api/games/5

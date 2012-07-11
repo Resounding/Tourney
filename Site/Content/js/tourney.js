@@ -122,10 +122,8 @@ require(['underscore', 'backbone', 'text!../html/gameTemplates.html', 'domReady!
                 getConnection().start();  
                 
                 that.on('reset:tournament', function() {
-                    $.post('api/games/reset', {
-                        success: function() {
-                            that.fetch();
-                        }
+                    $.post('api/games/reset', function() {
+                        that.fetch();
                     });
                 });                  
 
@@ -166,6 +164,8 @@ require(['underscore', 'backbone', 'text!../html/gameTemplates.html', 'domReady!
                 var that = this;
                 $.ajax('/api/games', {
                     success: function(games) {
+                        that.remove(that.models);
+
                         _.forEach(games, function(game) {
                             that.add(game.Value);
                         })
@@ -177,7 +177,8 @@ require(['underscore', 'backbone', 'text!../html/gameTemplates.html', 'domReady!
         var GameView = Backbone.View.extend({
             initialize: function() {
                 this.createTemplates();
-                this.model.on('change:scorer change:status change:home change:visitor change:connectionId', this.render, this);            
+                this.model.on('change:scorer change:status change:home change:visitor change:connectionId', this.render, this); 
+                this.model.on('remove', this.remove, this);           
             },
             createTemplates: function() {
                 this.templates = {
@@ -218,6 +219,9 @@ require(['underscore', 'backbone', 'text!../html/gameTemplates.html', 'domReady!
                 }
 
                 return this;
+            },
+            remove: function() {
+                this.$el.remove();
             }
         });
 
@@ -228,13 +232,14 @@ require(['underscore', 'backbone', 'text!../html/gameTemplates.html', 'domReady!
                 collection.on('add', this.addOne, this);
                 collection.fetch();
 
-                $('.btn-success').click(function (e) {
+                $('.login').click(function (e) {
+                    e.preventDefault();
                     var connectionId = 'chodgkinson@gmail.com';
                     docCookies.setItem('connectionId', connectionId);
                     collection.invoke('set', { connectionId: connectionId });
                 });
 
-                $('.btn-danger').click(function(e) {
+                $('.reset').click(function(e) {
                     if(!confirm('Are you sure you want to reset the Tournament?')) return;
 
                     collection.trigger('reset:tournament');
