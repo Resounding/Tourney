@@ -57,6 +57,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -135,16 +136,21 @@
   <ItemGroup>
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\TourneyController.cs" />
+    <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameAction.cs" />
     <Compile Include="Models\GamesList.cs" />
+    <Compile Include="Models\Tour.cs" />
+    <Compile Include="Models\TourInputModel.cs" />
     <Compile Include="Models\TourneyConnection.cs" />
+    <Compile Include="Models\TourneyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Tourney.sdf" />
     <Content Include="Content\css\bootstrap-responsive.css" />
     <Content Include="Content\css\bootstrap-responsive.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -154,6 +160,9 @@
     <Content Include="Content\html\scoreTemplate.html" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\js\bootstrap-tour.js" />
+    <Content Include="Content\js\jquery.cookie.js" />
+    <Content Include="Content\js\tour.js" />
     <Content Include="Content\js\signalR.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\js\backbone.js" />
@@ -179,7 +188,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Content Include="Views\Tours\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

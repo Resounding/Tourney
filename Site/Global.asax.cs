@@ -35,7 +35,7 @@ namespace Site
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Tourney", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Tours", action = "Index", id = UrlParameter.Optional }
             );
         }
 
@@ -47,6 +47,8 @@ namespace Site
             RegisterRoutes(RouteTable.Routes);
 
             BundleTable.Bundles.RegisterTemplateBundles();
+
+            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<Site.Models.TourneyContext>());
         }
     }
 }
