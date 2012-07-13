@@ -207,7 +207,7 @@ require(['underscore', 'backbone', 'text!../html/gameTemplates.html', 'domReady!
                     that.model.trigger('visitorScore', that.model.id);
                 });
                 this.$('button.gameOn').click(function(e) {
-                    that.model.trigger('gameOn', that.model.id);
+                    //that.model.trigger('gameOn', that.model.id);
                 });
 
                 this.$('button.startScoring').click(function(e) {
