@@ -17,7 +17,7 @@
         onHide: function() {
             $.post('/tours/log', { tourId: tour.tourId, step: 2 });
 
-            $('.login').replaceWith($('<span>you@example.com</span>'));
+            $('.login').replaceWith($('<a>you@example.com</a>'));
             
             var connectionId = 'chodgkinson@gmail.com';
             Util.cookies.setItem('connectionId', connectionId);
