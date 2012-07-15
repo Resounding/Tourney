@@ -19,6 +19,7 @@
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-modal.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/require.js")"></script>
 
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style.css")" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/bootstrap.css")" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/bootstrap-responsive.css")" />
 </head>
@@ -89,7 +90,7 @@
     <div class="scoring-tooltip hide">
         <p>Once you're logged in, you can start scoring games, and here's where the magic really happens.</p>
         <p>If you have your mobile phone handy, scan the QR code below.</p>
-        <img alt="http://tourney.resounding.ca/tours/mobile/1" 
+        <img alt="http://tourney.resounding.ca/tours/mobile/?tourId=@Model.TourId" 
              src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=http://tourney.resounding.ca/tours/mobile/1" />
     </div>
     <div class="game-on-tooltip hide">

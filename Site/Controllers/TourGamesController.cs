@@ -7,18 +7,15 @@ using Site.Models;
 
 namespace Site.Controllers
 {
-    public class GamesController : ApiController
+    public class TourGamesController : ApiController
     {
-        // GET /api/games
-        public GamesList Get()
-        {
-            return GamesList.Instance;
-        }
+        private TourneyContext _db = new TourneyContext();
 
-        // GET /api/games/5
-        public Game Get(int id)
+        // GET /api/games
+        public Game[] Get(int tourId)
         {
-            return GamesList.Instance[id];
+            var games = (from tg in _db.TourGames where tg.Tour.Id == tourId select tg.Game).ToArray();
+            return games;
         }
 
         // POST /api/games

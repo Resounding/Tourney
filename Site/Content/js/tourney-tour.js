@@ -6,6 +6,9 @@ define({
                 var $templates = $(templates);
 
                 var Game = Backbone.Model.extend({
+                    initialize: function() {
+                        var x = 1;
+                    },
                     canScore: function () {
                         return !(this.get('scorer')) && this.get('connectionId');
                     },
@@ -60,7 +63,7 @@ define({
                     model: Game,
                     initialize: function () {
                         var that = this,
-                            connection = $.connection('/games'),
+                            connection = $.connection('/tourgames'),
                             getConnection = function () {
                                 var cookie = Util.cookies.getItem('connectionId');
 
@@ -74,7 +77,7 @@ define({
                         getConnection().start();
 
                         that.on('reset:tournament', function () {
-                            $.post('api/games/reset', function () {
+                            $.post('api/tourgames/reset/' + that.tourId, function () {
                                 that.fetch();
                             });
                         });
@@ -114,12 +117,12 @@ define({
                     },
                     fetch: function () {
                         var that = this;
-                        $.ajax('/api/games', {
+                        $.ajax('/api/tourgames/?tourId=' + that.tourId, {
                             success: function (games) {
                                 that.remove(that.models);
 
                                 _.forEach(games, function (game) {
-                                    that.add(game.Value);
+                                    that.add(game);
                                 })
                             }
                         });
@@ -182,6 +185,7 @@ define({
                     initialize: function (options) {
                         this.tourId = options.tourId;
                         var collection = this.collection = new GameCollection();
+                        collection.tourId = options.tourId;
                         collection.on('add', this.addOne, this);
                         collection.fetch();
 
@@ -192,7 +196,10 @@ define({
                         });
 
                         $('.welcome a.btn').click(function(e) {
+                            $.post('/tours/log', { tourId: options.tourId, step: 0 });
+
                             tour.model = collection.at(0);
+                            tour.tourId = options.tourId;
                             tour.restart(true);
                         });
 

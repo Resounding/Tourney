@@ -25,6 +25,7 @@ namespace Site
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapConnection<TourneyConnection>("games", "games/{*operation}");
+            routes.MapConnection<TourConnection>("tourgames", "tourgames/{*operation}");
 
             routes.MapHttpRoute(
                 name: "DefaultApi",

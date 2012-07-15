@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Site.Models
 {
@@ -11,6 +12,27 @@ namespace Site.Models
 
     public class Game
     {
+        public Game()
+        {
+            status = "notStarted";
+        }
+
+        public Game(string homeTeam, string visitingTeam, string location, string time)
+            : this()
+        {
+            home = new Side {
+                team = homeTeam,
+                score = 0
+            };
+            visitor = new Side {
+                team = visitingTeam,
+                score = 0
+            };
+            this.location = location;
+            this.time = time;
+        }
+
+        [Key]
         public int id { get; set; }
         public string status { get; set; }
         public string location { get; set; }

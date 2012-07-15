@@ -1,0 +1,44 @@
+﻿@model Site.Models.MobileTourOutputModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Mobile</title>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.cookie.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-tour.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-modal.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/require.js")"></script>
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/bootstrap.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/bootstrap-responsive.css")" />
+</head>
+<body>
+    <table>
+        <tr>
+            <th>
+                @Model.HomeTeam
+            </th>
+            <th>
+                @Model.HomeScore
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Model.VisitingTeam
+            </td>
+            <td>
+                @Model.VisitorScore
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

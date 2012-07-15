@@ -4,7 +4,10 @@
         element: '#game-container',
         content: $('.setup-tooltip').html(),
         title: 'Setup',
-        placement: 'top'
+        placement: 'top',
+        onHide: function() {
+            $.post('/tours/log', { tourId: tour.tourId, step: 1 });
+        }
     });
     tour.addStep({
         element: '.login',
@@ -12,6 +15,10 @@
         title: 'Login',
         placement: 'bottom',
         onHide: function() {
+            $.post('/tours/log', { tourId: tour.tourId, step: 2 });
+
+            $('.login').replaceWith($('<span>you@example.com</span>'));
+            
             var connectionId = 'chodgkinson@gmail.com';
             Util.cookies.setItem('connectionId', connectionId);
             tour.model.set({ connectionId: connectionId });
@@ -23,13 +30,18 @@
         content: $('.scoring-tooltip').html(),
         title: 'Scoring',
         onHide: function() {
+            $.post('/tours/log', { tourId: tour.tourId, step: 3 });
+
             tour.model.trigger('gameOn', tour.model.id);
         }
     });
     tour.addStep({
         element: '#game-container div:first',
         content: $('.game-on-tooltip').html(),
-        title: 'Game On!'
+        title: 'Game On!',
+        onHide: function() {
+            $.post('/tours/log', { tourId: tour.tourId, step: 4 });
+        }
     });
 
     return tour;
