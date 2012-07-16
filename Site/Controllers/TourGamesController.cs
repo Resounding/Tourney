@@ -12,16 +12,10 @@ namespace Site.Controllers
         private TourneyContext _db = new TourneyContext();
 
         // GET /api/games
-        public Game[] Get(int tourId)
+        public Game Get(int tourId)
         {
-            var games = (from tg in _db.TourGames where tg.Tour.Id == tourId select tg.Game).ToArray();
-            return games;
-        }
-
-        // POST /api/games
-        public void Post(string value)
-        {
-            GamesList.Reset();
+            var game = (from tg in _db.TourGames where tg.Tour.Id == tourId select tg.Game).First();
+            return game;
         }
     }
 }

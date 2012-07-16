@@ -50,15 +50,6 @@
                         <li>
                             <a class="login" href=""><i class="icon-user"></i>Login</a>
                         </li>
-                        <li class="divider-vertical"></li>
-                        <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Actions<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="" class="reset">Reset</a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -66,13 +57,120 @@
     </div>
     <header>
         <div class="hero-unit">
-            <h1>Resounding Software Tourney</h1>
-            <p>For organizing Resounding tournaments!</p>
+            <h1><img src="../../Content/img/logo.jpg" style="width: 80px; height: 60px;" alt="Site Logo" />
+            South Westbank Invitational</h1>
         </div>
     </header>
 
     <div class="container-fluid">
-        <div class="row-fluid" id="game-container"></div>
+        <div class="row-fluid">
+            <div class="span3">
+                <div class="row-fluid" id="game-container">
+                    <div class="span12 not-started-game game1">
+                        <h2>Game #1</h2>
+                        Team #1 vs. Team #2
+                        <br />
+                        8:00 AM - Gym A
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #2</h2>
+                        Team #3 vs. Team #4
+                        <br />
+                        8:00 AM - Gym B
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #3</h2>
+                        Team #5 vs. Team #6
+                        <br />
+                        9:00 AM - Gym A
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #4</h2>
+                        Team #7 vs. Team #8
+                        <br />
+                        9:00 AM - Gym B
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #5</h2>
+                        Team #1 vs. Team #2
+                        <br />
+                        8:00 AM - Gym A
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #6</h2>
+                        Team #3 vs. Team #4
+                        <br />
+                        8:00 AM - Gym B
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #7</h2>
+                        Team #5 vs. Team #6
+                        <br />
+                        9:00 AM - Gym A
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #8</h2>
+                        Team #7 vs. Team #8
+                        <br />
+                        9:00 AM - Gym B
+                    </div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="row-fluid">
+                   <div class="span12 not-started-game">
+                        <h2>Game #9</h2>
+                        Team #1 vs. Team #2
+                        <br />
+                        8:00 AM - Gym A
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #10</h2>
+                        Team #3 vs. Team #4
+                        <br />
+                        8:00 AM - Gym B
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #11</h2>
+                        Team #5 vs. Team #6
+                        <br />
+                        9:00 AM - Gym A
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Game #12</h2>
+                        Team #7 vs. Team #8
+                        <br />
+                        9:00 AM - Gym B
+                    </div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="row-fluid">
+                    <div class="span12 not-started-game">
+                        <h2>Semi-Final #1</h2>
+                        Team #1 vs. Team #2
+                        <br />
+                        8:00 AM - Gym A
+                    </div>
+                    <div class="span12 not-started-game">
+                        <h2>Semi-Final #2</h2>
+                        Team #3 vs. Team #4
+                        <br />
+                        8:00 AM - Gym B
+                    </div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="row-fluid">
+                    <div class="span12 not-started-game">
+                        <h2>Finals</h2>
+                        Team #1 vs. Team #2
+                        <br />
+                        8:00 AM - Gym A
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modals -->
@@ -102,8 +200,10 @@
     <div class="scoring-tooltip hide">
         <p>Once you're logged in, you can start scoring games, and here's where the magic really happens.</p>
         <p>If you have your mobile phone handy, scan the QR code below.</p>
-        <img alt="http://tourney.resounding.ca/tours/mobile/?tourId=@Model.TourId" 
-             src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=http://tourney.resounding.ca/tours/mobile/1" />
+            <a href="/tours/mobile/?tourId=@Model.TourId" target="_blank">
+                <img alt="/tours/mobile/?tourId=@Model.TourId" 
+                     src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=http://tourney.resounding.ca/tours/mobile/1" />
+            </a>
     </div>
     <div class="game-on-tooltip hide">
         <p>Now the game is underway!</p>

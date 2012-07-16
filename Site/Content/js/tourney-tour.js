@@ -1,6 +1,6 @@
 define({
     load: function(name, req, load, config) {
-        req(['underscore', 'backbone', 'util', 'text!../html/gameTemplates.html', 'tour', 'domReady!'], 
+        req(['underscore', 'backbone', 'util', 'text!../html/tourTemplates.html', 'tour', 'domReady!'], 
             function (_, Backbone, Util, templates, tour) {
             req(['signalR', 'bootstrap-modal', 'jqr'], function () {
                 var $templates = $(templates);
@@ -13,19 +13,13 @@ define({
                         return !(this.get('scorer')) && this.get('connectionId');
                     },
                     leader: function () {
-                        var home = this.get('home'),
-                            visitor = this.get('visitor');
-
-                        return visitor.score > home.score ? visitor : home;
+                        return this.get('home');
                     },
                     trailer: function () {
-                        var home = this.get('home'),
-                            visitor = this.get('visitor');
-
-                        return home.score < visitor.score ? home : visitor;
+                        return this.get('visitor');
                     },
                     title: function () {
-                        var text = 'Game #' + this.id,
+                        var text = 'Game #1',
                             status = this.get('status');
                         if (status === 'inProgress') text += ' (in progress)';
                         if (status === 'done') text += ' (complete)';
@@ -76,12 +70,6 @@ define({
 
                         getConnection().start();
 
-                        that.on('reset:tournament', function () {
-                            $.post('api/tourgames/reset/' + that.tourId, function () {
-                                that.fetch();
-                            });
-                        });
-
                         that.on('gameOn', function (id) {
                             var game = that.get(id);
                             if (game) {
@@ -118,12 +106,8 @@ define({
                     fetch: function () {
                         var that = this;
                         $.ajax('/api/tourgames/?tourId=' + that.tourId, {
-                            success: function (games) {
-                                that.remove(that.models);
-
-                                _.forEach(games, function (game) {
-                                    that.add(game);
-                                })
+                            success: function (game) {
+                                that.add(game);
                             }
                         });
                     }
@@ -132,7 +116,7 @@ define({
                 var GameView = Backbone.View.extend({
                     initialize: function () {
                         this.createTemplates();
-                        this.model.on('change:scorer change:status change:home change:visitor change:connectionId', this.render, this);
+                        this.model.on('change', this.render, this);
                         this.model.on('remove', this.remove, this);
                     },
                     createTemplates: function () {
@@ -154,21 +138,6 @@ define({
 
                         this.setElement(html);
 
-                        var that = this;
-                        this.$('button.home').click(function (e) {
-                            that.model.trigger('homeScore', that.model.id);
-                        });
-                        this.$('button.visitor').click(function (e) {
-                            that.model.trigger('visitorScore', that.model.id);
-                        });
-                        this.$('button.gameOn').click(function (e) {
-                            that.model.trigger('gameOn', that.model.id);
-                        });
-
-                        this.$('button.startScoring').click(function (e) {
-                            that.model.trigger('startScoring', that.model.id);
-                        });
-
                         if (prevElement) {
                             prevElement.replaceWith(this.$el);
                         }
@@ -189,12 +158,6 @@ define({
                         collection.on('add', this.addOne, this);
                         collection.fetch();
 
-                        $('.reset').click(function (e) {
-                            if (!confirm('Are you sure you want to reset the Tournament?')) return;
-
-                            collection.trigger('reset:tournament');
-                        });
-
                         $('.welcome a.btn').click(function(e) {
                             $.post('/tours/log', { tourId: options.tourId, step: 0 });
 
@@ -207,8 +170,8 @@ define({
                     },
                     addOne: function (game) {
                         var view = new GameView({ model: game });
-                        var el = view.render().el;
-                        this.$el.append(el);
+                        var el = view.render().$el;
+                        $('.game1').replaceWith(el);
                     }
                 });
 

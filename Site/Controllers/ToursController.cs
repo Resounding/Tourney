@@ -35,14 +35,6 @@ namespace Site.Controllers
                 };
                 db.TourGames.Add(tourGame);
 
-                game = new Game("Team 3", "Team 4", "Gym B", "8:00");
-                db.Games.Add(game);
-                tourGame = new TourGame {
-                    Game = game,
-                    Tour = tour
-                };
-                db.TourGames.Add(tourGame);
-
                 db.SaveChanges();
 
                 // create games for the tour

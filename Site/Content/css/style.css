@@ -9,7 +9,7 @@ a
     color: #00B7FF;
 }
 
-.not-started-game
+.not-started-game, .in-progress-game
 {
     background: #0067A0;
     color: #fff;
@@ -22,4 +22,8 @@ a
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+}
+.in-progress-game
+{
+    border-color: Navy;
 }
