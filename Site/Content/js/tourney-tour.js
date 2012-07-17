@@ -166,7 +166,7 @@ define({
                             tour.restart(true);
                         });
 
-                        $('.welcome').modal({ keyboard: false });
+                        $('.welcome').modal({ keyboard: false, backdrop: 'static' });
                     },
                     addOne: function (game) {
                         var view = new GameView({ model: game });

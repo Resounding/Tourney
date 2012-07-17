@@ -5,13 +5,6 @@
             {{= get('home').team }} vs. {{= get('visitor').team }} 
             <br />
             {{= attributes.time }} @ {{= attributes.location }}
-            {{ if(canScore()) { }}
-            <br />
-            <button class="startScoring btn">Score this game</button>
-            {{ } else if(attributes.scorer === collection.connectionId) { }}
-            <br />
-            <button class="gameOn btn">Start Game > ></button>
-            {{ } }}
         </div>
     </div>
     <div id="in-progress-game-template">
@@ -50,6 +43,18 @@
                 {{ print(trailer().score) }}
             </div>
             {{= attributes.time }} @ {{= attributes.location }}
+        </div>
+    </div>
+    <div id="mobile-template">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span6 home">
+                
+                </div>
+                <div class="span6 visitor">
+                
+                </div>
+            </div>
         </div>
     </div>
 </div>

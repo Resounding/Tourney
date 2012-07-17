@@ -27,3 +27,8 @@ a
 {
     border-color: Navy;
 }
+
+table.mobile td
+{
+    text-align: center;
+}

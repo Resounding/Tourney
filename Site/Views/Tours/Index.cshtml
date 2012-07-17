@@ -15,6 +15,7 @@
     <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.cookie.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-transition.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-tour.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-modal.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/require.js")"></script>
@@ -174,7 +175,7 @@
     </div>
 
     <!-- Modals -->
-    <div class="welcome  modal hide fade">
+    <div class="welcome modal hide fade">
         <div class="modal-header">
             <h1>Welcome!</h1>
         </div>
@@ -202,7 +203,7 @@
         <p>If you have your mobile phone handy, scan the QR code below.</p>
             <a href="/tours/mobile/?tourId=@Model.TourId" target="_blank">
                 <img alt="/tours/mobile/?tourId=@Model.TourId" 
-                     src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=http://tourney.resounding.ca/tours/mobile/1" />
+                     src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=http://tourney.resounding.ca/tours/mobile/?tourId=@Model.TourId" />
             </a>
     </div>
     <div class="game-on-tooltip hide">

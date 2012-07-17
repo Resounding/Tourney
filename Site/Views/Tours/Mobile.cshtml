@@ -22,23 +22,40 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/bootstrap-responsive.css")" />
 </head>
 <body>
-    <table>
+    <table style="width: 100%" class="mobile">
         <tr>
             <th>
-                @Model.HomeTeam
+                <h2>@Model.HomeTeam</h2>                               
             </th>
             <th>
-                @Model.HomeScore
+                <h2>@Model.VisitingTeam</h2>                                
             </th>
         </tr>
         <tr>
-            <td>
-                @Model.VisitingTeam
+            <td class="home">
+                <p class="lead">@Model.HomeScore</p>
             </td>
-            <td>
-                @Model.VisitorScore
+            <td class="visitor">
+                <p class="lead">@Model.VisitorScore</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="home">
+                <button class="btn btn-primary btn-large">Score</button>
+            </td>
+            <td class="visitor">
+                <button class="btn btn-primary btn-large">Score</button>
             </td>
         </tr>
     </table>
+        
+    <script type="text/javascript">
+    require.config({
+        baseUrl: '/Content/js'
+    });
+    require(['mobile-tour!'], function(View) {
+        new View({ tourId: @Model.TourId, gameId: @Model.GameId });
+    });
+    </script>
 </body>
 </html>

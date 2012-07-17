@@ -169,7 +169,9 @@
     <Content Include="Content\img\logo.jpg" />
     <Content Include="Content\js\bootstrap-modal.js" />
     <Content Include="Content\js\bootstrap-tour.js" />
+    <Content Include="Content\js\bootstrap-transition.js" />
     <Content Include="Content\js\jquery.cookie.js" />
+    <Content Include="Content\js\mobile-tour.js" />
     <Content Include="Content\js\tour.js" />
     <Content Include="Content\js\tourney-tour.js" />
     <Content Include="Content\js\signalR.js" />
