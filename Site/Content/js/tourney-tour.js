@@ -7,16 +7,10 @@ define({
 
                 var Game = Backbone.Model.extend({
                     initialize: function() {
-                        var x = 1;
+                        
                     },
                     canScore: function () {
                         return !(this.get('scorer')) && this.get('connectionId');
-                    },
-                    leader: function () {
-                        return this.get('home');
-                    },
-                    trailer: function () {
-                        return this.get('visitor');
                     },
                     title: function () {
                         var text = 'Game #1',
@@ -25,31 +19,6 @@ define({
                         if (status === 'done') text += ' (complete)';
 
                         return text;
-                    },
-                    info: function () {
-                        var status = this.get('status'),
-                            home = this.get('home'),
-                            visitor = this.get('visitor'),
-                            leader = this.leader(),
-                            trailer = this.trailer(),
-                            text;
-
-                        switch (status) {
-                            case 'inProgress':
-                                text = _.template('{{= leader.team }}: {{= leader.score }}, ' +
-                                    '{{= trailer.team }}: {{= trailer.score }}',
-                                    { leader: leader, trailer: trailer });
-                                break;
-                            case 'done':
-                                text = _.template('{{= leader.team }} defeated {{= trailer.team }} ' +
-                                    '{{= leader.score }}-{{= trailer.score }}',
-                                    { leader: leader, trailer: trailer });
-                                break;
-                            default:
-                                text = '{{= home.team }} vs. {{= visitor.team }}';
-                        }
-
-                        return _.template(text, this.attributes);
                     }
                 });
 

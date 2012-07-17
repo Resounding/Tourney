@@ -25,13 +25,14 @@
 
                         getConnection().start();
 
-                        getConnection().stateChanged(function (cn, d) {
+                        var interval = setInterval(function() {
                             var states = $.signalR.connectionState;
-                            if (cn.oldState === states.connected &&
-                                connection.state == states.connected) {
-                                getConnection().send('startScoring', gameId);
+                            if(connection.state === states.connected) {
+                                action = { gameId: gameId, action: 'gameOn' };
+                                getConnection().send(JSON.stringify(action));
+                                clearInterval(interval);
                             }
-                        });
+                        }, 100);
 
                         getConnection().received(_.bind(this.dataReceived, this));                        
                     },

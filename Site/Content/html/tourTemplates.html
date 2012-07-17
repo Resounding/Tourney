@@ -10,16 +10,21 @@
     <div id="in-progress-game-template">
         <div class="span12 in-progress-game">
             <h2>{{ print(title()); }}</h2>
-            {{= get('home').team }} vs. {{= get('visitor').team }} 
+            <table>
+                <tr>
+                    <th>{{= get('home').team }}</th>
+                    <th>{{= get('visitor').team }}</th>
+                </tr>
+                <tr>
+                    <td class="home">
+                        <p class="lead">{{= get('home').score }}</p>
+                    </td>
+                    <td class="visitor">
+                        <p class="lead">{{= get('visitor').score }}</p>
+                    </td>
+                </tr>
+            </table>
             <br />
-            {{= attributes.time }} @ {{= attributes.location }}
-            {{ if(canScore()) { }}
-            <br />
-            <button class="startScoring btn">Score this game</button>
-            {{ } else if(attributes.scorer === collection.connectionId) { }}
-            <br />
-            <button class="gameOn btn">Start Game > ></button>
-            {{ } }}
         </div>
     </div>
     <div id="done-game-template">

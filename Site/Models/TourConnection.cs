@@ -16,7 +16,6 @@ public class TourConnection : PersistentConnection
         switch (action.action) {
             case "startScoring":                
                 game.scorer = connectionId;
-                game.status = "inProgress";
                 break;
             case "gameOn":
                 game.status = "inProgress";
