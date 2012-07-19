@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Net;
+using System.Net.Mail;
 using System.Web.Mvc;
-using Site.Models;
 using System.Web.Routing;
+using Site.Models;
+
 
 namespace Site.Controllers
 {
@@ -83,6 +82,33 @@ namespace Site.Controllers
                     db.SaveChanges();
                 }
             }
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        public ActionResult Email(string email, string comments)
+        {
+            var fromAddress = new MailAddress("hodgkinson@gmail.com", "Cliffe Hodgkinson");
+            var toAddress = new MailAddress("hodgkinson@gmail.com", "Resounding Tournaments");
+            const string fromPassword = "$h@ronVG";
+            const string subject = "Information on Resounding Tournaments";
+            var body = string.Format("Email: {0}\nComments: {1}", email, comments);
+
+            var smtp = new SmtpClient {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress) {
+                Subject = subject,
+                Body = body
+            }) {
+                smtp.Send(message);
+            }
+
             return new EmptyResult();
         }
 

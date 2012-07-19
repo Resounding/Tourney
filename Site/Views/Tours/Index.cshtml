@@ -16,7 +16,6 @@
     <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.cookie.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-transition.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-tour.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-modal.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/require.js")"></script>
 
@@ -57,9 +56,8 @@
         </div>
     </div>
     <header>
-        <div class="hero-unit">
-            <h1><img src="../../Content/img/logo.jpg" style="width: 80px; height: 60px;" alt="Site Logo" />
-            South Westbank Invitational</h1>
+        <div class="hero-unit logo">
+            <h1>Hastings Invitational</h1>
         </div>
     </header>
 
@@ -193,13 +191,17 @@
     <div class="setup-tooltip hide">
         <p>The first thing you'll do is set up your tournament with teams and a schedule.</p>
         <p>For this tour, that's been done for you.</p>
+        <br />
+        <p><button class="btn btn-primary pull-right">Next >></button></p>
     </div>
     <div class="login-tooltip hide">
         <p>In order to administer your tournament, you'll need to log in.</p>
         <p>You'll be able to log in using your Facebook account, or a username and password.</p>
+        <br />
+        <p><button class="btn btn-primary pull-right">Next >></button></p>
     </div>
     <div class="scoring-tooltip hide">
-        <p>Once you're logged in, you can start scoring games, and here's where the magic really happens.</p>
+        <p>Once you're logged in, you can start scoring games, and here's where the excitement really happens.</p>
         <p>If you have your mobile phone handy, scan the QR code below.</p>
             <a href="/tours/mobile/?tourId=@Model.TourId" target="_blank">
                 <img alt="/tours/mobile/?tourId=@Model.TourId" 
@@ -209,6 +211,35 @@
     <div class="game-on-tooltip hide">
         <p>Now the game is underway!</p>
         <p>You can keep scoring until the game is over.</p>
+        <br />
+        <p><button class="btn btn-primary pull-right">Next >></button></p>
+    </div>
+    <div class="game-over-tooltip modal hide">
+        <div class="modal-header">
+            <h1>Keep in Touch</h1>
+        </div>
+        <div class="modal-body">
+            <p class="lead">And that's it; thanks for playing.</p>
+            <p>If you'd like us to keep you up to date with our progress, enter your e-mail address below.
+            If you have comments, you can leave those as well.</p>
+            <form class=".form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="email">Email Address</label>
+                    <div class="controls">
+                      <input type="text" class="input-xlarge" id="email" placeholder="Email Address" />
+                    </div>
+              </div>
+                <div class="control-group">
+                    <label class="control-label" for="comments">Comments</label>
+                    <div class="controls">
+                      <textarea class="input-xlarge" id="comments" rows="3"></textarea>
+                    </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Keep me posted</button>
+              </div>
+            </form>
+        </div>
     </div>
 
     <script type="text/javascript">

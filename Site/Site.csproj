@@ -156,8 +156,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Tourney.sdf" />
+    <Content Include="Content\css\bootstrap-cerulean.css" />
     <Content Include="Content\css\bootstrap-responsive.css" />
     <Content Include="Content\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\css\bootstrap-united.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\style.css" />
@@ -167,7 +169,10 @@
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\js\bootstrap-components.js" />
     <Content Include="Content\js\bootstrap-modal.js" />
+    <Content Include="Content\js\bootstrap-popover.js" />
+    <Content Include="Content\js\bootstrap-tooltip.js" />
     <Content Include="Content\js\bootstrap-tour.js" />
     <Content Include="Content\js\bootstrap-transition.js" />
     <Content Include="Content\js\jquery.cookie.js" />

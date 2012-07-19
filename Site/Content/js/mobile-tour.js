@@ -9,7 +9,8 @@
                     el: document.body,
                     events: {
                         'click .home button': 'homeScore',
-                        'click .visitor button': 'visitorScore'
+                        'click .visitor button': 'visitorScore',
+                        'click button.gameOver': 'gameOver'
                     },
                     initialize: function(attr) {
                         this.model = new Backbone.Model(attr);
@@ -44,6 +45,11 @@
                     visitorScore: function() {
                         var id = this.model.get('gameId'),
                             action = { gameId: id, action: 'visitorScore' };
+                        this.getConnection().send(JSON.stringify(action));
+                    },
+                    gameOver: function() {
+                        var id = this.model.get('gameId'),
+                            action = { gameId: id, action: 'gameOver' };
                         this.getConnection().send(JSON.stringify(action));
                     },
                     dataReceived: function(game) {

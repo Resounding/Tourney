@@ -32,3 +32,9 @@ table.mobile td
 {
     text-align: center;
 }
+.logo
+{
+    background-image: url(../img/logo.jpg);
+    background-position: left;
+    background-repeat: no-repeat;
+}

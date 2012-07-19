@@ -1,8 +1,8 @@
 define({
     load: function(name, req, load, config) {
-        req(['underscore', 'backbone', 'util', 'text!../html/tourTemplates.html', 'tour', 'domReady!'], 
-            function (_, Backbone, Util, templates, tour) {
-            req(['signalR', 'bootstrap-modal', 'jqr'], function () {
+        req(['underscore', 'backbone', 'util', 'text!../html/tourTemplates.html', 'tour!', 'domReady!'], 
+            function (_, Backbone, Util, templates, Tour) {
+                req(['signalR', 'bootstrap-components'], function () {
                 var $templates = $(templates);
 
                 var Game = Backbone.Model.extend({
@@ -13,12 +13,15 @@ define({
                         return !(this.get('scorer')) && this.get('connectionId');
                     },
                     title: function () {
-                        var text = 'Game #1',
-                            status = this.get('status');
-                        if (status === 'inProgress') text += ' (in progress)';
-                        if (status === 'done') text += ' (complete)';
+                        var text = 'Game #1';
 
                         return text;
+                    },
+                    winner: function() {
+                        var home = this.get('home'),
+                            visitor = this.get('visitor');
+
+                        return (visitor.score > home.score) ? visitor : home;
                     }
                 });
 
@@ -130,9 +133,10 @@ define({
                         $('.welcome a.btn').click(function(e) {
                             $.post('/tours/log', { tourId: options.tourId, step: 0 });
 
-                            tour.model = collection.at(0);
-                            tour.tourId = options.tourId;
-                            tour.restart(true);
+                            var tourId = options.tourId,
+                                model = collection.at(0);
+                            var tour = new Tour(tourId, model, collection);
+                            tour.start();
                         });
 
                         $('.welcome').modal({ keyboard: false, backdrop: 'static' });

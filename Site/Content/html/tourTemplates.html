@@ -1,6 +1,6 @@
 <div>
     <div id="not-started-game-template">
-        <div class="span12 not-started-game">
+        <div class="span12 not-started-game active-game">
             <h2>{{ print(title()); }}</h2>
             {{= get('home').team }} vs. {{= get('visitor').team }} 
             <br />
@@ -8,7 +8,7 @@
         </div>
     </div>
     <div id="in-progress-game-template">
-        <div class="span12 in-progress-game">
+        <div class="span12 in-progress-game active-game">
             <h2>{{ print(title()); }}</h2>
             <table>
                 <tr>
@@ -28,26 +28,11 @@
         </div>
     </div>
     <div id="done-game-template">
-        <div class="span12>
+        <div class="span12 done-game active-game">
             <h2>{{ print(title()); }}</h2>
-            <div class="row-fluid hidden-phone">
-                <span class="label label-success">{{ print(leader().team) }}</span>
-                defeated
-            </div>
-            <div class="row-fluid hidden-phone">
-                <b>{{ print(trailer().team) }}</b>
-                <span class="label label-success">{{ print(leader().score) }} - 
-                {{ print(trailer().score) }}</span>
-            </div>
-            <div class="row-fluid visible-phone">
-                <span class="label label-success">{{ print(leader().team) }}</span>: 
-                <b>{{ print(leader().score) }}</b>
-            </div>
-            <div class="row-fluid visible-phone">
-                <b>{{ print(trailer().team) }}</b>: 
-                {{ print(trailer().score) }}
-            </div>
-            {{= attributes.time }} @ {{= attributes.location }}
+            {{= winner().team }} <span class="badge badge-info">{{= winner().score }}</span>
+            &nbsp;
+            {{= loser().team }} <span>{{= loser().score }}</span>
         </div>
     </div>
     <div id="mobile-template">
