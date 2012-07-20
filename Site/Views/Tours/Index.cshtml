@@ -207,6 +207,11 @@
                 <img alt="/tours/mobile/?tourId=@Model.TourId" 
                      src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=http://tourney.resounding.ca/tours/mobile/?tourId=@Model.TourId" />
             </a>
+        <br />
+        <div class="alert alert-info nophone" style="visibility: hidden">
+            <strong>Phone not handy?</strong>Click here to open the scoring screen in a new browser window: 
+            <button class="btn">Start scoring</button>
+        </div>
     </div>
     <div class="game-on-tooltip hide">
         <p>Now the game is underway!</p>
@@ -237,6 +242,7 @@
               </div>
               <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Keep me posted</button>
+                <button class="btn" data-dismiss="modal">No thanks</button>
               </div>
             </form>
         </div>
