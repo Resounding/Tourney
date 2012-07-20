@@ -88,25 +88,18 @@ namespace Site.Controllers
         [HttpPost]
         public ActionResult Email(string email, string comments)
         {
-            var fromAddress = new MailAddress("hodgkinson@gmail.com", "Cliffe Hodgkinson");
-            var toAddress = new MailAddress("hodgkinson@gmail.com", "Resounding Tournaments");
-            const string fromPassword = "$h@ronVG";
             const string subject = "Information on Resounding Tournaments";
             var body = string.Format("Email: {0}\nComments: {1}", email, comments);
+            var fromAddress = new MailAddress("hodgkinson@gmail.com", "Cliffe Hodgkinson");
+            var toAddress = new MailAddress("hodgkinson@gmail.com", "Cliffe Hodgkinson");
 
-            var smtp = new SmtpClient {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-            using (var message = new MailMessage(fromAddress, toAddress) {
-                Subject = subject,
-                Body = body
-            }) {
-                smtp.Send(message);
+            using (var smtp = new SmtpClient()) {
+                using (var message = new MailMessage(fromAddress, toAddress) {
+                    Subject = subject,
+                    Body = body
+                }) {
+                    smtp.Send(message);
+                }
             }
 
             return new EmptyResult();
