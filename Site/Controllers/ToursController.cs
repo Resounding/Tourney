@@ -26,7 +26,7 @@ namespace Site.Controllers
 
                 db.Tours.Add(tour);
 
-                var game = new Game("Team 1", "Team 2", "Gym A", "8:00");
+                var game = new Game("Dynamo", "Hurricanes", "Field 1", "8:00 AM");
                 db.Games.Add(game);
                 var tourGame = new TourGame {
                     Game = game,

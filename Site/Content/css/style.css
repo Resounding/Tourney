@@ -23,18 +23,32 @@ a
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
-.in-progress-game
+.active-game table, table.mobile
 {
-    border-color: Navy;
+    width: 100%;
 }
-
-table.mobile td
+table.mobile td, table.mobile.th, .active-game td, .active-game th
 {
     text-align: center;
 }
 .logo
 {
-    background-image: url(../img/logo.jpg);
+    background-image: url(../img/field.jpg);
     background-position: left;
     background-repeat: no-repeat;
+}
+.logo h1
+{
+    margin-left: 350px;
+}
+.well.tooltip-well 
+{
+    padding-top: 5px;
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    background-color: white;
+}
+#game-container h2
+{
+    text-align: center;
 }

@@ -4,6 +4,8 @@
             function (_, Backbone, Util) {
                 req(['signalR', 'bootstrap-components'], function () {
 
+                    $.fn.popover.defaults.template = '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h1 class="popover-title"></h1><div class="popover-content"><p></p></div></div></div>';
+
                     var connection = $.connection('/tourgames');                
 
                     var tour = function (tourId, model, collection) {
@@ -93,6 +95,7 @@
                             });
                         
                             $elmt.popover('show');
+                            $elmt.data('popover').tip().find('.popover-inner').css('width', 350)
                         },
                         showLogin: function() {
                             var that = this,
@@ -125,6 +128,12 @@
                             });
 
                             $elmt.popover('show');
+                            var tip = $elmt.data('popover').tip(),
+                                inner = tip.find('.popover-inner'),
+                                left = parseInt(tip.css('left')),
+                                width = parseInt(inner.css('width'));
+                            tip.css('top', 0).css('left', left - 100);
+                            inner.css('width', width + 100);
                         },
                         showScoring: function() {
                             var that = this,
@@ -139,7 +148,7 @@
 
                             $elmt.popover('show');
                             setTimeout(function() {
-                                $('.nophone').css('visibility', 'visible');
+                                
                                 $(document).on('click', '.nophone button', function(e) {
                                     e.preventDefault();
                                     window.open('http://tourney.resounding.ca/tours/mobile/?tourId=' + that.tourId, 'phoneAlternative',
@@ -161,7 +170,7 @@
                             $(document).on('click', '.popover button', function (e) {
                                 $.post('/tours/log', { tourId: that.tourId, step: 4 });
 
-                                $elmt.popover('hide');
+                                $('.popover').hide();
                                 that.showFinal();
                             });
 

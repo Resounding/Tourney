@@ -15,44 +15,54 @@
     <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.cookie.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-tour.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-modal.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-components.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/require.js")"></script>
 
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/bootstrap.css")" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/bootstrap-responsive.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/mobile.css")" />
 </head>
 <body>
-    <table style="width: 100%" class="mobile">
-        <tr>
-            <th>
-                <h2>@Model.HomeTeam</h2>                               
-            </th>
-            <th>
-                <h2>@Model.VisitingTeam</h2>                                
-            </th>
-        </tr>
-        <tr>
-            <td class="home">
-                <p class="lead">@Model.HomeScore</p>
-            </td>
-            <td class="visitor">
-                <p class="lead">@Model.VisitorScore</p>
-            </td>
-        </tr>
-        <tr>
-            <td class="home">
-                <button class="btn btn-primary btn-large">Score</button>
-            </td>
-            <td class="visitor">
-                <button class="btn btn-primary btn-large">Score</button>
-            </td>
-        </tr>
-        <tr>
-            <th colspan="2">
-                <button class="btn btn-success btn-large gameOver">Game Over</button>
-            </th>
-        </tr>
-    </table>
+    <div class="wrapper">
+        <table class="mobile">
+            <tr>
+                <th>
+                    <h2>@Model.HomeTeam</h2>                               
+                </th>
+                <th>
+                    <h2>@Model.VisitingTeam</h2>                                
+                </th>
+            </tr>
+            <tr>
+                <td class="home">
+                    <p class="lead">@Model.HomeScore</p>
+                </td>
+                <td class="visitor">
+                    <p class="lead">@Model.VisitorScore</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="home">
+                    <button class="btn btn-primary btn-large">Score</button>
+                </td>
+                <td class="visitor">
+                    <button class="btn btn-primary btn-large">Score</button>
+                </td>
+            </tr>
+        </table>
+        <div class="push"></div>
+    </div>
+    <div class="footer">
+        <a class="btn btn-success gameOver">Game Over</a>
+    </div>
+
+    <div class="tooltip-scoring hide">
+        <p class="lead">Click the Score buttons.</p>
+        <p>The changes will be immediately broadcast to everyone on the site.</p>
+    </div>
+    <div class="tooltip-game-over hide">
+        <p>When the game is done, just click the Game Over button.</p>
+    </div>
         
     <script type="text/javascript">
     require.config({

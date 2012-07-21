@@ -2,19 +2,31 @@
     load: function(name, req, load, config) {
         req(['underscore', 'backbone', 'util', 'text!../html/tourTemplates.html', 'tour', 'domReady!'], 
             function (_, Backbone, Util, templates, tour) {
-            req(['signalR', 'bootstrap-modal', 'jqr'], function () {
-                var $templates = $(templates);                
+            req(['signalR', 'bootstrap-components'], function () {
+                var $templates = $(templates);
 
                 var view = Backbone.View.extend({
                     el: document.body,
                     events: {
                         'click .home button': 'homeScore',
                         'click .visitor button': 'visitorScore',
-                        'click button.gameOver': 'gameOver'
+                        'click a.gameOver': 'gameOver'
                     },
                     initialize: function(attr) {
                         this.model = new Backbone.Model(attr);
                         this.setupConnection();
+
+                        var $elmt = $('table.mobile'),
+                                $content = $('.tooltip-scoring');
+
+                        $elmt.popover({
+                            title: 'Scoring',
+                            content: $content.html(),
+                            placement: 'bottom',
+                            trigger: 'manual'
+                        });
+
+                        $elmt.popover('show');
                     },
                     setupConnection: function() {
                         var gameId = this.model.get('gameId'),
@@ -55,6 +67,23 @@
                     dataReceived: function(game) {
                         this.$('.home p.lead').html(game.home.score);
                         this.$('.visitor p.lead').html(game.visitor.score);
+
+                        if(game.home.score + game.visitor.score === 1) {
+
+                            $('.popover').hide();
+
+                            var $elmt = $('a.gameOver'),
+                                $content = $('.tooltip-game-over');
+
+                            $elmt.popover({
+                                title: 'Finishing the Game',
+                                content: $content.html(),
+                                placement: 'top',
+                                trigger: 'manual'
+                            });
+
+                            $elmt.popover('show');
+                        }
                     }
                 });
 
